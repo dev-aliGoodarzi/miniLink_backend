@@ -9,3 +9,5 @@ homeRouter.get("/", (req, res) => {
     message: "server Is Normal",
   });
 });
+
+module.exports = homeRouter;
