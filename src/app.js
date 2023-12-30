@@ -16,12 +16,14 @@ const mongoose_1 = __importDefault(require("mongoose"));
 // Routes
 const convertToShortLink_1 = require("./routes/convertToShortLink/convertToShortLink");
 const convertToMainLink_1 = require("./routes/convertToMainLink/convertToMainLink");
+const homeRouter_1 = require("./routes/homeRouter/homeRouter");
 // Routes
 exports.app = (0, express_1.default)();
 exports.app.use(express_1.default.json());
 exports.app.use(require("body-parser").urlencoded({ extended: false }));
 exports.app.use("/", convertToShortLink_1.convertToShortLinkRouter);
 exports.app.use("/", convertToMainLink_1.convertToMainLink);
+exports.app.use("/", homeRouter_1.homeRouter);
 console.log();
 mongoose_1.default
     .connect(`${String(process.env.MONGODB_PROTOCOL)}${String(process.env.DB_USERNAME)}:${String(process.env.DB_PASSWORD)}@${String(process.env.BACKEND_DB_IP)}/${String(process.env.DB_NAME)}`)
