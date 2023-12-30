@@ -13,7 +13,6 @@ import mongoose from "mongoose";
 // Routes
 import { convertToShortLinkRouter } from "./routes/convertToShortLink/convertToShortLink";
 import { convertToMainLink } from "./routes/convertToMainLink/convertToMainLink";
-import { homeRouter } from "./routes/homeRouter/homeRouter";
 // Routes
 
 export const app = express();
@@ -23,7 +22,11 @@ app.use(require("body-parser").urlencoded({ extended: false }));
 
 app.use("/", convertToShortLinkRouter);
 app.use("/", convertToMainLink);
-app.use("/", homeRouter);
+app.get("/",  async (req, res) => {
+  res.status(200).json({
+    message: "server Is Normal",
+  });
+});
 
 console.log();
 

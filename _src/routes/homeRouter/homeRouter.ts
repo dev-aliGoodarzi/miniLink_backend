@@ -4,7 +4,7 @@ import express from "express";
 
 export const homeRouter = express.Router();
 
-homeRouter.get("/", (req, res) => {
+homeRouter.get("/home", async (req, res) => {
   res.status(200).json({
     message: "server Is Normal",
   });
