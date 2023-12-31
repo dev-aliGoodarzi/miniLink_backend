@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.app = void 0;
+exports.isConnectedToDB = exports.app = void 0;
 // Env Attacher
 require("dotenv/config");
 // Env Attacher
@@ -25,26 +25,32 @@ const mongoose_1 = __importDefault(require("mongoose"));
 // Routes
 const convertToShortLink_1 = require("./routes/convertToShortLink/convertToShortLink");
 const convertToMainLink_1 = require("./routes/convertToMainLink/convertToMainLink");
+const currentStatusRoutes_1 = require("./routes/status/currentStatus/currentStatusRoutes");
 // Routes
 exports.app = (0, express_1.default)();
+exports.isConnectedToDB = false;
 exports.app.use(express_1.default.json());
 exports.app.use(require("body-parser").urlencoded({ extended: false }));
 exports.app.use("/", convertToShortLink_1.convertToShortLinkRouter);
 exports.app.use("/", convertToMainLink_1.convertToMainLink);
 exports.app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(200).json({
-        message: "server Is Normal",
+        message: exports.isConnectedToDB
+            ? "سرور با موفقیت در حال کار است"
+            : "اتصال به دیتابیس به مشکل خورده",
     });
 }));
-console.log();
+exports.app.use("/status-of-server", currentStatusRoutes_1.currentStatusRoutes);
 mongoose_1.default
     .connect(`${String(process.env.MONGODB_PROTOCOL)}${String(process.env.DB_USERNAME)}:${String(process.env.DB_PASSWORD)}@${String(process.env.BACKEND_DB_IP)}/${String(process.env.DB_NAME)}`)
     .then(() => {
     console.clear();
     console.log("connected To DB successfully");
+    exports.isConnectedToDB = true;
 })
     .catch((err) => {
     console.log(err);
+    exports.isConnectedToDB = false;
 });
 exports.app.listen(process.env.PORT, () => {
     console.log(`Server Is Running On Port ${process.env.PORT}`);
