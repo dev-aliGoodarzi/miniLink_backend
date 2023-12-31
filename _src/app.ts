@@ -22,7 +22,7 @@ app.use(require("body-parser").urlencoded({ extended: false }));
 
 app.use("/", convertToShortLinkRouter);
 app.use("/", convertToMainLink);
-app.get("/",  async (req, res) => {
+app.get("/", async (req, res) => {
   res.status(200).json({
     message: "server Is Normal",
   });
