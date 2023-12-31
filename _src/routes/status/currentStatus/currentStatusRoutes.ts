@@ -10,7 +10,7 @@ currentStatusRoutes.get("/current-status", async (req, res) => {
   try {
     const _cpu = await sw.cpu();
     const _mem = await sw.mem();
-    const _disk = await sw.diskLayout();
+    // const _disk = await sw.diskLayout();
     // const _temps = await sw.cpuTemperature();
     const cpuStatus = {
       brand: _cpu.brand,
@@ -33,15 +33,15 @@ currentStatusRoutes.get("/current-status", async (req, res) => {
     //     max: _temps.max,
     //   },
     // };
-    const diskStatus = {
-      total: _disk,
-    };
+    // const diskStatus = {
+    //   total: _disk,
+    // };
 
     res.status(200).json({
       cpuStatus,
       memoryStatus,
       //   temps,
-      diskStatus,
+      //   diskStatus,
     });
   } catch (err) {
     res.status(403).json({

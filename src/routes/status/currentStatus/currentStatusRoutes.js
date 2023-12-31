@@ -22,7 +22,7 @@ exports.currentStatusRoutes.get("/current-status", (req, res) => __awaiter(void 
     try {
         const _cpu = yield systeminformation_1.default.cpu();
         const _mem = yield systeminformation_1.default.mem();
-        const _disk = yield systeminformation_1.default.diskLayout();
+        // const _disk = await sw.diskLayout();
         // const _temps = await sw.cpuTemperature();
         const cpuStatus = {
             brand: _cpu.brand,
@@ -45,14 +45,14 @@ exports.currentStatusRoutes.get("/current-status", (req, res) => __awaiter(void 
         //     max: _temps.max,
         //   },
         // };
-        const diskStatus = {
-            total: _disk,
-        };
+        // const diskStatus = {
+        //   total: _disk,
+        // };
         res.status(200).json({
             cpuStatus,
             memoryStatus,
             //   temps,
-            diskStatus,
+            //   diskStatus,
         });
     }
     catch (err) {
