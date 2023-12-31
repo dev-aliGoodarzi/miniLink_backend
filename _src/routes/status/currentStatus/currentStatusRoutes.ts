@@ -8,15 +8,15 @@ export const currentStatusRoutes = express.Router();
 
 currentStatusRoutes.get("/current-status", async (req, res) => {
   try {
-    const _cpu = await sw.cpu();
+    // const _cpu = await sw.cpu();
     const _mem = await sw.mem();
     // const _disk = await sw.diskLayout();
     // const _temps = await sw.cpuTemperature();
-    const cpuStatus = {
-      brand: _cpu.brand,
-      speed: _cpu.speed,
-      cores: _cpu.cores,
-    };
+    // const cpuStatus = {
+    //   brand: _cpu.brand,
+    //   speed: _cpu.speed,
+    //   cores: _cpu.cores,
+    // };
     const memoryStatus = {
       memory: {
         usingMemory: _mem.used,
@@ -38,7 +38,7 @@ currentStatusRoutes.get("/current-status", async (req, res) => {
     // };
 
     res.status(200).json({
-      cpuStatus,
+      //   cpuStatus,
       memoryStatus,
       //   temps,
       //   diskStatus,

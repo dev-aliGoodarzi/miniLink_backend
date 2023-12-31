@@ -20,15 +20,15 @@ const systeminformation_1 = __importDefault(require("systeminformation"));
 exports.currentStatusRoutes = express_1.default.Router();
 exports.currentStatusRoutes.get("/current-status", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const _cpu = yield systeminformation_1.default.cpu();
+        // const _cpu = await sw.cpu();
         const _mem = yield systeminformation_1.default.mem();
         // const _disk = await sw.diskLayout();
         // const _temps = await sw.cpuTemperature();
-        const cpuStatus = {
-            brand: _cpu.brand,
-            speed: _cpu.speed,
-            cores: _cpu.cores,
-        };
+        // const cpuStatus = {
+        //   brand: _cpu.brand,
+        //   speed: _cpu.speed,
+        //   cores: _cpu.cores,
+        // };
         const memoryStatus = {
             memory: {
                 usingMemory: _mem.used,
@@ -49,7 +49,7 @@ exports.currentStatusRoutes.get("/current-status", (req, res) => __awaiter(void 
         //   total: _disk,
         // };
         res.status(200).json({
-            cpuStatus,
+            //   cpuStatus,
             memoryStatus,
             //   temps,
             //   diskStatus,
