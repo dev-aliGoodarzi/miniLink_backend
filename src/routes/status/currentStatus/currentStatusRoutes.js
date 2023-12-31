@@ -15,13 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.currentStatusRoutes = void 0;
 // Express
 const express_1 = __importDefault(require("express"));
-// Express
-const systeminformation_1 = __importDefault(require("systeminformation"));
 exports.currentStatusRoutes = express_1.default.Router();
 exports.currentStatusRoutes.get("/current-status", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // const _cpu = await sw.cpu();
-        const _mem = yield systeminformation_1.default.mem();
+        // const _mem = await sw.mem();
         // const _disk = await sw.diskLayout();
         // const _temps = await sw.cpuTemperature();
         // const cpuStatus = {
@@ -29,17 +27,17 @@ exports.currentStatusRoutes.get("/current-status", (req, res) => __awaiter(void 
         //   speed: _cpu.speed,
         //   cores: _cpu.cores,
         // };
-        const memoryStatus = {
-            memory: {
-                usingMemory: _mem.used,
-                totalMemory: _mem.total,
-                freeMemory: _mem.free,
-            },
-            swap: {
-                swapTotal: _mem.swaptotal,
-                freeSwap: _mem.swapfree,
-            },
-        };
+        // const memoryStatus = {
+        //   memory: {
+        //     usingMemory: _mem.used,
+        //     totalMemory: _mem.total,
+        //     freeMemory: _mem.free,
+        //   },
+        //   swap: {
+        //     swapTotal: _mem.swaptotal,
+        //     freeSwap: _mem.swapfree,
+        //   },
+        // };
         // const temps = {
         //   cpu: {
         //     max: _temps.max,
@@ -49,10 +47,10 @@ exports.currentStatusRoutes.get("/current-status", (req, res) => __awaiter(void 
         //   total: _disk,
         // };
         res.status(200).json({
-            //   cpuStatus,
-            memoryStatus,
-            //   temps,
-            //   diskStatus,
+        //   cpuStatus,
+        //   memoryStatus,
+        //   temps,
+        //   diskStatus,
         });
     }
     catch (err) {
