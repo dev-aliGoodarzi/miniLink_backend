@@ -19,11 +19,11 @@ const express_1 = __importDefault(require("express"));
 const si = require("systeminformation");
 exports.currentStatusRoutes = express_1.default.Router();
 exports.currentStatusRoutes.get("/current-status", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    si.cpu()
-        .then((data) => {
-        res.status(200).json(data);
-    })
-        .catch((err) => {
+    try {
+        const _cpu = yield si.cpu();
+        res.status(200).json(_cpu);
+    }
+    catch (err) {
         res.status(413).json(err);
-    });
+    }
 }));

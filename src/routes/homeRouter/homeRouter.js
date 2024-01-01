@@ -18,6 +18,10 @@ const express_1 = __importDefault(require("express"));
 // Express
 exports.homeRouter = express_1.default.Router();
 exports.homeRouter.get("/home", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+    }
+    catch (err) {
+    }
     res.status(200).json({
         message: "server Is Normal",
     });
