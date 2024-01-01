@@ -10,7 +10,7 @@ currentStatusRoutes.get("/current-status", async (req, res) => {
   try {
     const cpu = await si.cpu();
     const ram = await si.mem();
-    const disk = await si.diskIO();
+    const disk = await si.diskLayout();
     const osInfo = await si.osInfo();
     res.status(200).json({
       cpu,
@@ -20,5 +20,6 @@ currentStatusRoutes.get("/current-status", async (req, res) => {
     });
   } catch (err) {
     res.status(413).json(err);
+    console.log(err);
   }
 });

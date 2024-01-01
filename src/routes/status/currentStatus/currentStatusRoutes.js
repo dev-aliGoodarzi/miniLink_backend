@@ -22,7 +22,7 @@ exports.currentStatusRoutes.get("/current-status", (req, res) => __awaiter(void 
     try {
         const cpu = yield si.cpu();
         const ram = yield si.mem();
-        const disk = yield si.diskIO();
+        const disk = yield si.diskLayout();
         const osInfo = yield si.osInfo();
         res.status(200).json({
             cpu,
@@ -33,5 +33,6 @@ exports.currentStatusRoutes.get("/current-status", (req, res) => __awaiter(void 
     }
     catch (err) {
         res.status(413).json(err);
+        console.log(err);
     }
 }));
