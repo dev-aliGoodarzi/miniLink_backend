@@ -26,13 +26,37 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const convertToShortLink_1 = require("./routes/convertToShortLink/convertToShortLink");
 const convertToMainLink_1 = require("./routes/convertToMainLink/convertToMainLink");
 const currentStatusRoutes_1 = require("./routes/status/currentStatus/currentStatusRoutes");
+const shortStatusRoutes_1 = require("./routes/status/shortStatus/shortStatusRoutes");
 // Routes
 exports.app = (0, express_1.default)();
 exports.isConnectedToDB = false;
+// MiddleWares
 exports.app.use(express_1.default.json());
 exports.app.use(require("body-parser").urlencoded({ extended: false }));
+// MiddleWares
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+// Main Routes
 exports.app.use("/", convertToShortLink_1.convertToShortLinkRouter);
 exports.app.use("/", convertToMainLink_1.convertToMainLink);
+// Main Routes
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+// HomeRouter
 exports.app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(200).json({
         message: exports.isConnectedToDB
@@ -40,7 +64,30 @@ exports.app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* (
             : "اتصال به دیتابیس به مشکل خورده",
     });
 }));
+// HomeRouter
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+// Server Status
 exports.app.use("/status-of-server", currentStatusRoutes_1.currentStatusRoutes);
+exports.app.use("/status-of-server", shortStatusRoutes_1.shortStatusRoutes);
+// Server Status
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+// DB Connector
 mongoose_1.default
     .connect(`${String(process.env.MONGODB_PROTOCOL)}${String(process.env.DB_USERNAME)}:${String(process.env.DB_PASSWORD)}@${String(process.env.BACKEND_DB_IP)}/${String(process.env.DB_NAME)}`)
     .then(() => {
@@ -52,6 +99,16 @@ mongoose_1.default
     console.log(err);
     exports.isConnectedToDB = false;
 });
+// DB Connector
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 exports.app.listen(process.env.PORT, () => {
     console.log(`Server Is Running On Port ${process.env.PORT}`);
 });
