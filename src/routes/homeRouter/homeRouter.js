@@ -20,8 +20,7 @@ exports.homeRouter = express_1.default.Router();
 exports.homeRouter.get("/home", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
     }
-    catch (err) {
-    }
+    catch (err) { }
     res.status(200).json({
         message: "server Is Normal",
     });
