@@ -18,7 +18,7 @@ const express_1 = __importDefault(require("express"));
 // Express
 const si = require("systeminformation");
 exports.shortStatusRoutes = express_1.default.Router();
-exports.shortStatusRoutes.get("/short-status", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.shortStatusRoutes.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const cpu = yield si.cpu();
         const ram = yield si.mem();

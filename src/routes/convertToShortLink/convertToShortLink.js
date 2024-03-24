@@ -39,30 +39,69 @@ exports.convertToShortLinkRouter.post("/convert-to-short-link", (req, res) => __
         res.send();
         return;
     }
-    const { linkUrl, title } = body;
-    console.log(linkUrl);
+    const { linkUrl, title, description } = body;
+    if (!linkUrl) {
+        res.status(412).send({
+            message: "لینک ارسال نشده",
+        });
+        return;
+    }
+    if (!title) {
+        res.status(412).send({
+            message: "نام ارسال نشده",
+        });
+        return;
+    }
+    if (!description) {
+        res.status(412).send({
+            message: "توضیحات ارسال نشده",
+        });
+        return;
+    }
+    let shortedLink = (0, randomCharGenerator_1.randomCharGenerator)(20);
+    let isDupplicate = false;
+    /** */
+    /** */
+    /** */
+    /** */
+    /** */
+    // CHECK IF WE HAVE DUPPLICATE LINK ID
+    do {
+        const foundItem = yield mongoModels_1.ShortLinkModel.findOne({
+            shortedLink,
+        });
+        if (foundItem) {
+            shortedLink = (0, randomCharGenerator_1.randomCharGenerator)(30);
+            isDupplicate = true;
+        }
+        else {
+            isDupplicate = false;
+            shortedLink = (0, randomCharGenerator_1.randomCharGenerator)(20);
+        }
+    } while (isDupplicate);
+    // CHECK IF WE HAVE DUPPLICATE LINK ID
+    /** */
+    /** */
+    /** */
+    /** */
+    /** */
     const NewLink = new mongoModels_1.ShortLinkModel({
         linkUrl,
         title,
-        shortedLink: (0, randomCharGenerator_1.randomCharGenerator)(19),
+        shortedLink,
+        description,
     });
     yield NewLink.save();
-    // .then(() => {
     res.status(200).json({
         code: 200,
         message: "عملیات موفق",
         data: {
+            _id: NewLink._id,
             shortedLink: NewLink.shortedLink,
             linkUrl: NewLink.linkUrl,
             title: NewLink.title,
+            description: NewLink.description,
         },
     });
     res.send();
-    // })
-    // .catch(() => {
-    //   res.status(402).json({
-    //     code: 402,
-    //     message: "error ",
-    //   });
-    // });
 }));

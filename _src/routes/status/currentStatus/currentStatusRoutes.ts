@@ -2,24 +2,13 @@
 import express from "express";
 // Express
 
-const si = require("systeminformation");
+// Utils
+import { getCurrStatus } from "../../../utils/getCurrStatus";
+// Utils
 
 export const currentStatusRoutes = express.Router();
 
-currentStatusRoutes.get("/current-status", async (req, res) => {
-  try {
-    const cpu = await si.cpu();
-    const ram = await si.mem();
-    const disk = await si.diskLayout();
-    const osInfo = await si.osInfo();
-    res.status(200).json({
-      cpu,
-      ram,
-      disk,
-      osInfo,
-    });
-  } catch (err) {
-    res.status(413).json(err);
-    console.log(err);
-  }
+currentStatusRoutes.get("/", async (req, res) => {
+  const _res = getCurrStatus();
+  res.status(200).json(_res);
 });

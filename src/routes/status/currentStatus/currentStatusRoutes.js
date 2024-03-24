@@ -16,23 +16,11 @@ exports.currentStatusRoutes = void 0;
 // Express
 const express_1 = __importDefault(require("express"));
 // Express
-const si = require("systeminformation");
+// Utils
+const getCurrStatus_1 = require("../../../utils/getCurrStatus");
+// Utils
 exports.currentStatusRoutes = express_1.default.Router();
-exports.currentStatusRoutes.get("/current-status", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const cpu = yield si.cpu();
-        const ram = yield si.mem();
-        const disk = yield si.diskLayout();
-        const osInfo = yield si.osInfo();
-        res.status(200).json({
-            cpu,
-            ram,
-            disk,
-            osInfo,
-        });
-    }
-    catch (err) {
-        res.status(413).json(err);
-        console.log(err);
-    }
+exports.currentStatusRoutes.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const _res = (0, getCurrStatus_1.getCurrStatus)();
+    res.status(200).json(_res);
 }));

@@ -4,9 +4,9 @@ export const language: {
   };
 } = {
   fa: {
-    name: "منویی ، منوی خوشگل من",
+    name: "کوتاه کننده لینک ",
   },
   en: {
-    name: "menoyee , my lovely meno",
+    name: "link shorter",
   },
 };

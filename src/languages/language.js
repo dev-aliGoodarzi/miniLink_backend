@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.language = void 0;
 exports.language = {
     fa: {
-        name: "منویی ، منوی خوشگل من",
+        name: "کوتاه کننده لینک ",
     },
     en: {
-        name: "menoyee , my lovely meno",
+        name: "link shorter",
     },
 };

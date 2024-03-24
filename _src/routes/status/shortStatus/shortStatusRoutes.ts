@@ -6,7 +6,7 @@ const si = require("systeminformation");
 
 export const shortStatusRoutes = express.Router();
 
-shortStatusRoutes.get("/short-status", async (req, res) => {
+shortStatusRoutes.get("/", async (req, res) => {
   try {
     const cpu = await si.cpu();
     const ram = await si.mem();
