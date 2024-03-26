@@ -76,7 +76,7 @@ loginUserRoute.post("/user/login", async (req: Request, res) => {
         );
         res
           .status(200)
-          .cookie("accessToken", userToken, {
+          .cookie("userToken", userToken, {
             secure: false,
             sameSite: "none",
             path: "/",

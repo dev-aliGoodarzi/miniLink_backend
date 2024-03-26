@@ -21,7 +21,8 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const mongoModels_1 = require("../mongo_models/mongoModels");
 // Models
 const checkIsAuthMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const token = req.header("Authorization");
+    const token = req.header("Authorization") || req.cookies.userToken;
+    console.log(token);
     if (!token)
         return res.status(401).json({ error: "توکن وارد نشده" });
     try {

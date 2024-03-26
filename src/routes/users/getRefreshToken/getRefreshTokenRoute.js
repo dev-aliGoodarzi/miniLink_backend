@@ -28,7 +28,7 @@ exports.getRefreshTokenRoute.post(`/token/getNewToken`, (req, res) => __awaiter(
             throw "رفرش توکن ارسال نشده";
         const selectedUser = yield mongoModels_1.UserModel.findOne({ refreshToken });
         if (!selectedUser)
-            throw "کاربر مورد نظر موجود نیست";
+            throw "کاربر مورد با رفرش توکن ارسالی نظر موجود نیست";
         const newUserToken = jsonwebtoken_1.default.sign({ userId: selectedUser._id }, process.env.SALT, {
             expiresIn: "1d",
         });

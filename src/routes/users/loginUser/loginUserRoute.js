@@ -64,7 +64,7 @@ exports.loginUserRoute.post("/user/login", (req, res) => __awaiter(void 0, void 
                 });
                 res
                     .status(200)
-                    .cookie("accessToken", userToken, {
+                    .cookie("userToken", userToken, {
                     secure: false,
                     sameSite: "none",
                     path: "/",

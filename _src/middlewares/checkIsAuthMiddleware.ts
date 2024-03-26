@@ -15,7 +15,9 @@ export const checkIsAuthMiddleware = async (
   res: Response,
   next: () => void
 ) => {
-  const token = req.header("Authorization");
+  const token = req.header("Authorization") || req.cookies.userToken;
+
+  console.log(token);
 
   if (!token) return res.status(401).json({ error: "توکن وارد نشده" });
   try {

@@ -20,7 +20,7 @@ getRefreshTokenRoute.post(
 
       const selectedUser = await UserModel.findOne({ refreshToken });
 
-      if (!selectedUser) throw "کاربر مورد نظر موجود نیست";
+      if (!selectedUser) throw "کاربر مورد با رفرش توکن ارسالی نظر موجود نیست";
 
       const newUserToken = jwt.sign(
         { userId: selectedUser._id },
